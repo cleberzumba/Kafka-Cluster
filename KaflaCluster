@@ -1,0 +1,87 @@
+CONFIGURANDO E INICIANDO UM KAFKA CLUSTER COM ZOOKEEPER
+-------------------------------------------------------
+
+Camada de mensagem: Uma das principais tecnologias de um Data Lake, a camada de mensagens, cujo principal objetivo é tratar fluxos de dados gerados
+                    em tempo real das mais variadas fontes.
+                    
+                    
+1 - Iniciar zookeeper
+2 - Iniciar o broker (o kafka)
+3 - Criando um kafka topic
+4 - Producer Message
+5 - Consumer Message
+6 - Visualizando os dados nos Logs Kafka
+
+
+-- iniciar zookeeper
+
+	$ cd opt/kafka
+
+	kafka$ bin/zookeeper-server-start.sh config/zookeeper.properties
+
+      kafka$ nohup bin/zookeeper-server-start.sh config/zookeeper.properties > zookeeper.log & (executando em background)
+
+
+-- iniciar o broker (o kafka)
+
+	$ cd opt/kafka
+
+	kafka$ bin/kafka-server-start.sh config/server.properties
+
+      kafka$ jps
+
+
+-- Criando um Kafka Topic
+
+	$ cd opt/kafka
+
+	comando:
+
+	kafka$ bin/kafka-topics.sh --create --topic "TOPIC_NAME" --zookeeper lcalhost:2181 --replication-factor 1 --partitions 1
+        ou
+      kafka$ bin/kafka-topics.sh --create --bootstrap-server localhost:9092  --replication-factor 1 --partitions 1 --topic "TOPIC_NAME"
+
+
+	o comando para criar um topico é enviado ao zookeeper e ele aciona o broker para a criação do topico
+
+	* listando os topicos criado:
+
+		bin/kafka-topics.sh --list --zookeeper localhost:2181
+		ou
+		bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+
+	* mostrando informações dos topicos:
+
+		bin/kafka-topics.sh --describe --topic "TOPIC_NAME" --zookeeper localhost:2181
+		ou
+		bin/kafka-topics.sh --describe --topic "TOPIC_NAME" --bootstrap-server localhost:9092
+
+
+-- Producer Message
+
+	$ cd opt/kafka
+
+	kafka$ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic "TOPIC_NAME"
+
+
+-- Consumer Message
+
+	$ cd opt/kafka
+
+	kafka$ bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic "TOPIC_NAME" --from-beginning
+	ou
+	kafka$ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic "TOPIC_NAME" --from-beginning
+
+
+
+-- Visualizando os dados nos Logs Kafka
+
+	$ cd /tmp
+
+	tmp$ cd kafka-logs
+
+	kafka-logs$ cd topic1-0 (aqui estao as mensagens guardadas pelo kafka em binario)
+
+
+
+
