@@ -31,7 +31,7 @@ Camada de mensagem: Uma das principais tecnologias de um Data Lake, a camada de 
       kafka$ jps
 
 
--- Criando um Kafka Topic
+-- Criando um Kafka Topic 
 
 	$ cd opt/kafka
 
