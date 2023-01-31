@@ -1,6 +1,11 @@
 CONFIGURANDO E INICIANDO UM KAFKA CLUSTER COM ZOOKEEPER
 -------------------------------------------------------
 
+Camada de mensagem: Uma das principais tecnologias de um Data Lake, a camada de mensagens, cujo principal objetivo é tratar fluxos de dados gerados
+                    em tempo real das mais variadas fontes.
+		    
+		    
+		    
 1 - iniciar zookeeper
 
 	$ cd opt/kafka
